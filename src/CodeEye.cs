@@ -5,12 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing.Imaging;
-using System.Runtime.InteropServices;
-using static n_vision.INeuroProcess;
+using System.Runtime.InteropServices; 
 
-namespace n_vision
+namespace Images
 {
-    internal class Eye : INeuroProcess
+    internal class CodeEye : INeuroProcess
     {
         private static Bitmap ConvertTo32Rgb(Image image)
         {
@@ -55,12 +54,7 @@ namespace n_vision
             Sort(b);
             return Color.FromArgb(r[r.Length / 2], g[g.Length / 2], b[b.Length / 2]);
         }
-
-        public static float GetDiff(Color a, Color b)
-        {
-            return GetDiff(new byte[] { a.R, a.G, a.B }, new byte[] { b.R, b.G, b.B });
-        }
-
+         
         public static float GetDiff(byte[] rgb1, byte[] rgb2)
         {
             var dr = (float)Math.Abs(rgb1[0] - rgb2[0]) / 255;
@@ -143,53 +137,7 @@ namespace n_vision
                 for (int y = rec.Y; y < rec.Y + rec.Height; y++)
                     if (data[x, y] != 0)
                         map[x, y] = 0;
-        }
-
-        private static Rectangle selectRectangle(ref byte[,] data)
-        {
-            var p1 = new Point { };
-            var p2 = new Point { };
-            // ищем верхнюю точку
-            for (int y = data.GetLowerBound(1); y <= data.GetUpperBound(1); y++)
-                for (int x = data.GetLowerBound(0); x <= data.GetUpperBound(0); x++)
-                    if (data[x, y] != 0)
-                    {
-                        p1.Y = y; p1.X = x;
-                        p2 = p1;
-                        y = int.MaxValue - 1;
-                        break;
-                    }
-
-            // ищем левую точку
-            for (int x = data.GetLowerBound(0); x <= p1.X; x++)
-                for (int y = data.GetLowerBound(1); y <= data.GetUpperBound(1); y++)
-                    if (data[x, y] != 0)
-                    {
-                        p1.X = x;
-                        x = int.MaxValue - 1;
-                        break;
-                    }
-
-            // ищем правую точку
-            for (int x = data.GetUpperBound(0); x > p2.X; x--)
-                for (int y = data.GetLowerBound(1); y <= data.GetUpperBound(1); y++)
-                    if (data[x, y] != 0)
-                    {
-                        p2.X = x;
-                        x = int.MinValue + 1;
-                        break;
-                    }
-            // ищем нижнюю точку
-            for (int y = data.GetUpperBound(1); y > p2.Y; y--)
-                for (int x = data.GetLowerBound(0); x <= data.GetUpperBound(0); x++)
-                    if (data[x, y] != 0)
-                    {
-                        p2.Y = y;
-                        y = int.MinValue + 1;
-                        break;
-                    }
-            return new Rectangle(p1, new Size(p2.X - p1.X + 1, p2.Y - p1.Y + 1));
-        }
+        } 
 
         private static (int, int) FindPoint(ref byte[,] data, byte treshold)
         {

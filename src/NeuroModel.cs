@@ -9,12 +9,12 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace n_vision
+namespace Images
 {
-    internal class NN : INeuroProcess
+    internal class NeuroModel : INeuroProcess
     {
         private InferenceSession session;
-        NN(string modelFileName)
+        NeuroModel(string modelFileName)
         {
             session = new InferenceSession(modelFileName);
         }

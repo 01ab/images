@@ -1,4 +1,6 @@
-﻿namespace n_vision
+﻿using Images;
+
+namespace Images
 {
     partial class MainForm
     {
@@ -35,8 +37,10 @@
             this.showDiffMap = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.workLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.pictureBox1 = new Images.Canvas();
+            this.отчетToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.makeReport = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -46,7 +50,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.файлToolStripMenuItem,
-            this.преобразованияToolStripMenuItem});
+            this.преобразованияToolStripMenuItem,
+            this.отчетToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1443, 24);
@@ -99,6 +104,11 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
+            // workLabel
+            // 
+            this.workLabel.Name = "workLabel";
+            this.workLabel.Size = new System.Drawing.Size(0, 17);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlDark;
@@ -109,14 +119,26 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBox1.DoubleClick += new System.EventHandler(this.pictureBox1_DoubleClick);
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             // 
-            // workLabel
+            // отчетToolStripMenuItem
             // 
-            this.workLabel.Name = "workLabel";
-            this.workLabel.Size = new System.Drawing.Size(0, 17);
+            this.отчетToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.makeReport});
+            this.отчетToolStripMenuItem.Name = "отчетToolStripMenuItem";
+            this.отчетToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
+            this.отчетToolStripMenuItem.Text = "База данных";
             // 
-            // mainForm
+            // makeReport
+            // 
+            this.makeReport.Name = "makeReport";
+            this.makeReport.Size = new System.Drawing.Size(191, 22);
+            this.makeReport.Text = "Сформировать отчет";
+            this.makeReport.Click += new System.EventHandler(this.makeReport_Click);
+            // 
+            // MainForm
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -126,9 +148,8 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "mainForm";
-            this.Text = "n_vision ";
-            this.Load += new System.EventHandler(this.mainForm_Load);
+            this.Name = "MainForm";
+            this.Text = "images "; 
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.mainForm_DragDrop);
             this.DragOver += new System.Windows.Forms.DragEventHandler(this.mainForm_DragOver);
             this.menuStrip1.ResumeLayout(false);
@@ -148,10 +169,12 @@
         private System.Windows.Forms.ToolStripMenuItem open;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private Images.Canvas pictureBox1;
         private System.Windows.Forms.ToolStripMenuItem преобразованияToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showDiffMap;
         private System.Windows.Forms.ToolStripStatusLabel workLabel;
+        private System.Windows.Forms.ToolStripMenuItem отчетToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem makeReport;
     }
 }
 

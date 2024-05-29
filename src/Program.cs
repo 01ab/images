@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace n_vision
+namespace Images
 {
     internal static class Program
     {

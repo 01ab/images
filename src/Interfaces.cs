@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace n_vision
+namespace Images
 {
     // Интерфейсы
     public abstract class INeuroProcess
@@ -23,6 +23,10 @@ namespace n_vision
 
     public abstract class IDatabase
     {
+
+        abstract public void SaveObjects(string fileName, IEnumerable<INeuroProcess.NnRes> objects);
+
+        abstract public string Report();
 
     }
 
